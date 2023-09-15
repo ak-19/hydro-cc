@@ -1,5 +1,5 @@
 class Datapoint:
-    def __init__(self, timestamp, value):
+    def __init__(self, timestamp: int, value: int):
         self.timestamp = timestamp
         self.value = value
 

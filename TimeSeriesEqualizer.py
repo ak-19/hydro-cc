@@ -8,9 +8,9 @@ class TimeSeriesEqualizer:
 
     def load_data_points(self, data_points: [Datapoint]):
         self.data_points = data_points
-        self.data_points.sort(key=lambda x: x.timestamp)        
+        self.data_points.sort()        
 
-    def closest_half_hour(self, timestamp: int):
+    def closest_half_hour(self, timestamp: int) -> int:
         year = datetime.fromtimestamp(timestamp / 1000).year
         month = datetime.fromtimestamp(timestamp / 1000).month
         day = datetime.fromtimestamp(timestamp / 1000).day
@@ -26,7 +26,7 @@ class TimeSeriesEqualizer:
             bucket_start_time / 1000).strftime('%d/%m/%y %H:%M:%S')
         print(prettty_time, ' belongs to ', prettty_half_starttime, ' carries value of',dp.value)
 
-    def get_range_buckets(self):
+    def get_range_buckets(self) -> dict:
         buckets = defaultdict(list)
 
         for dp in self.data_points:
@@ -34,15 +34,16 @@ class TimeSeriesEqualizer:
                 break
             bucket_start_time = self.closest_half_hour(dp.timestamp)
             buckets[bucket_start_time].append(dp)
-            self.pretty_print(bucket_start_time, dp)
+            # debug trace states
+            # self.pretty_print(bucket_start_time, dp)
 
         return buckets
     
-    def calculate_interval_value(self, previous_data_point, curr_point):
+    def calculate_interval_value(self, previous_data_point: Datapoint, curr_point: Datapoint) -> float:
         minutes = (curr_point.timestamp - previous_data_point.timestamp) / 1000 / 60
         return minutes / 30 * previous_data_point.value
 
-    def granulate_buckets(self, buckets):
+    def granulate_buckets(self, buckets: dict) -> [dict]:
         bucket_times, B, result = sorted(buckets), len(buckets), []
 
         for i in range(B):
@@ -62,5 +63,5 @@ class TimeSeriesEqualizer:
             result.append(curr)
         return result
 
-    def equalize(self):
+    def equalize(self) -> dict:
         return self.granulate_buckets(self.get_range_buckets())
