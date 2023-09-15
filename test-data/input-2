@@ -1,0 +1,42 @@
+{
+    "turbine": "So_long_and_thanks_for_all_the_fish",
+    "power_unit": "MW",
+    "timeseries": [
+        {
+            "timestamp": 1581608700000,
+            "value": 1000
+        },
+        {
+            "timestamp": 1581609600000,
+            "value": 1
+        },
+        {
+            "timestamp": 1581609960000,
+            "value": 0
+        },
+        {
+            "timestamp": 1581611400000,
+            "value": 1
+        },
+        {
+            "timestamp": 1581612000000,
+            "value": 4
+        },
+        {
+            "timestamp": 1581613200000,
+            "value": 5
+        },
+        {
+            "timestamp": 1581613800000,
+            "value": 8
+        },
+        {
+            "timestamp": 1581614400000,
+            "value": 14
+        },
+        {
+            "timestamp": 1581615000000,
+            "value": null
+        }
+    ]
+}

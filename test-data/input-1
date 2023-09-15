@@ -1,0 +1,14 @@
+{
+    "turbine": "A",
+    "power_unit": "MW",
+    "timeseries": [
+        {
+            "timestamp": 1581609600000,
+            "value": 16
+        },
+        {
+            "timestamp": 1581610500000,
+            "value": null
+        }
+    ]
+}
