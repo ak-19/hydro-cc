@@ -36,5 +36,14 @@ class TestTimeSeriesEqualizer(TC):
         self.assertEqual(timeseries, expected_timeseries, 'Test case 4 failed')
 
 
+    # use case 5 double data point
+    def test_case_5_double_datapoint(self):
+        data_points: [Datapoint] = FileHandler('test-data/double-datapoint-example', '').get_data_points()
+        with self.assertRaises(Exception) as context:
+            timeseries = TimeSeriesEqualizer(data_points).equalize()
+
+    
+
+
 if __name__ == '__main__':
     main()

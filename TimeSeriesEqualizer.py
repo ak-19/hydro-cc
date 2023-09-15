@@ -62,6 +62,14 @@ class TimeSeriesEqualizer:
             curr['value'] += (30 - (intervals[-1].timestamp-bucket_start_time) / 1000 / 60) / 30 * intervals[-1].value
             result.append(curr)
         return result
+    
+    def duplicate_check(self):
+        seen = set()
+        for data_point in self.data_points:
+            if data_point.timestamp in seen:
+                raise Exception('Duplicate datapoint found')
+            seen.add(data_point.timestamp)
 
     def equalize(self) -> dict:
+        self.duplicate_check()
         return self.granulate_buckets(self.get_range_buckets())
